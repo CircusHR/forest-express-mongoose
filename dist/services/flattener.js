@@ -11,9 +11,9 @@ var _lodash = _interopRequireDefault(require("lodash"));
 var _forestExpress = _interopRequireDefault(require("forest-express"));
 var _fieldAnalyser = _interopRequireDefault(require("../utils/field-analyser"));
 var _schema = require("../utils/schema");
-var _class;
+var _Flattener;
 var FLATTEN_SEPARATOR = '@@@';
-module.exports = (_class = /*#__PURE__*/function () {
+module.exports = (_Flattener = /*#__PURE__*/function () {
   function Flattener(schema, flatten, model, lianaOptions) {
     (0, _classCallCheck2["default"])(this, Flattener);
     this.schema = schema;
@@ -21,7 +21,7 @@ module.exports = (_class = /*#__PURE__*/function () {
     this.model = model;
     this.lianaOptions = lianaOptions;
   }
-  (0, _createClass2["default"])(Flattener, [{
+  return (0, _createClass2["default"])(Flattener, [{
     key: "_removeWrongFlattenConfiguration",
     value: function _removeWrongFlattenConfiguration(index) {
       this.flatten.splice(index, 1);
@@ -219,10 +219,10 @@ module.exports = (_class = /*#__PURE__*/function () {
   }, {
     key: "_unflattenSubsetQuery",
     value: function _unflattenSubsetQuery(request) {
-      Object.entries(request.body.data.attributes.all_records_subset_query).forEach(function (_ref10) {
-        var _ref11 = (0, _slicedToArray2["default"])(_ref10, 2),
-          key = _ref11[0],
-          value = _ref11[1];
+      Object.entries(request.body.data.attributes.all_records_subset_query).forEach(function (_ref0) {
+        var _ref1 = (0, _slicedToArray2["default"])(_ref0, 2),
+          key = _ref1[0],
+          value = _ref1[1];
         if (key.includes('fields') && Flattener._isFieldFlattened(value)) {
           request.body.data.attributes.all_records_subset_query[key] = Flattener._unflattenCollectionFields(value);
         }
@@ -263,10 +263,10 @@ module.exports = (_class = /*#__PURE__*/function () {
     value: function unflattenParams(params) {
       var unflattenedParams = JSON.parse(JSON.stringify(params));
       if (unflattenedParams.fields) {
-        Object.entries(unflattenedParams.fields).forEach(function (_ref12) {
-          var _ref13 = (0, _slicedToArray2["default"])(_ref12, 2),
-            collection = _ref13[0],
-            requestedFields = _ref13[1];
+        Object.entries(unflattenedParams.fields).forEach(function (_ref10) {
+          var _ref11 = (0, _slicedToArray2["default"])(_ref10, 2),
+            collection = _ref11[0],
+            requestedFields = _ref11[1];
           if (Flattener._isFieldFlattened(requestedFields)) {
             unflattenedParams.fields[collection] = Flattener._unflattenCollectionFields(requestedFields);
           }
@@ -338,13 +338,13 @@ module.exports = (_class = /*#__PURE__*/function () {
       var flattenedReferences = Object.keys(fields).filter(function (field) {
         return Flattener._isFieldFlattened(field);
       });
-      var collectionReferenceFields = (((_Interface$Schemas$sc = _forestExpress["default"].Schemas.schemas[collectionName]) === null || _Interface$Schemas$sc === void 0 ? void 0 : _Interface$Schemas$sc.fields) || []).filter(function (_ref14) {
-        var reference = _ref14.reference;
+      var collectionReferenceFields = (((_Interface$Schemas$sc = _forestExpress["default"].Schemas.schemas[collectionName]) === null || _Interface$Schemas$sc === void 0 ? void 0 : _Interface$Schemas$sc.fields) || []).filter(function (_ref12) {
+        var reference = _ref12.reference;
         return reference;
       });
       return flattenedReferences.filter(function (flattenedReference) {
-        return collectionReferenceFields.some(function (_ref15) {
-          var field = _ref15.field;
+        return collectionReferenceFields.some(function (_ref13) {
+          var field = _ref13.field;
           return field === flattenedReference;
         });
       });
@@ -384,5 +384,4 @@ module.exports = (_class = /*#__PURE__*/function () {
       return records;
     }
   }]);
-  return Flattener;
-}(), (0, _defineProperty2["default"])(_class, "FLATTEN_SEPARATOR", FLATTEN_SEPARATOR), _class);
+}(), (0, _defineProperty2["default"])(_Flattener, "FLATTEN_SEPARATOR", FLATTEN_SEPARATOR), _Flattener);

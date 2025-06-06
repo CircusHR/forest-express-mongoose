@@ -11,7 +11,7 @@ var HasManyAssociator = /*#__PURE__*/function () {
     this._params = params;
     this._data = data;
   }
-  (0, _createClass2["default"])(HasManyAssociator, [{
+  return (0, _createClass2["default"])(HasManyAssociator, [{
     key: "perform",
     value: function perform() {
       var updateParams = {};
@@ -27,6 +27,5 @@ var HasManyAssociator = /*#__PURE__*/function () {
       }).lean().exec();
     }
   }]);
-  return HasManyAssociator;
 }();
 module.exports = HasManyAssociator;

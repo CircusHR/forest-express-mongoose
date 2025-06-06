@@ -12,7 +12,7 @@ var FieldAnalyser = /*#__PURE__*/function () {
     this.model = model;
     this.lianaOptions = lianaOptions;
   }
-  (0, _createClass2["default"])(FieldAnalyser, [{
+  return (0, _createClass2["default"])(FieldAnalyser, [{
     key: "_formatRef",
     value: function _formatRef(ref) {
       var referenceModel = utils.getReferenceModel(this.lianaOptions, ref);
@@ -280,6 +280,5 @@ var FieldAnalyser = /*#__PURE__*/function () {
       return validations;
     }
   }]);
-  return FieldAnalyser;
 }();
 module.exports = FieldAnalyser;

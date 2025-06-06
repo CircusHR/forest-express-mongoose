@@ -14,7 +14,7 @@ var ProjectionBuilder = /*#__PURE__*/function () {
   }
 
   // NOTICE: Convert a list of field names into a mongo $project structure.
-  (0, _createClass2["default"])(ProjectionBuilder, [{
+  return (0, _createClass2["default"])(ProjectionBuilder, [{
     key: "findRequestSmartField",
     value:
     // NOTICE: Perform the intersection between schema and request smart fields.
@@ -48,6 +48,5 @@ var ProjectionBuilder = /*#__PURE__*/function () {
       return null;
     }
   }]);
-  return ProjectionBuilder;
 }();
 module.exports = ProjectionBuilder;

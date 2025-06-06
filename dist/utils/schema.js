@@ -26,7 +26,7 @@ exports.getModelNameOld = function (model) {
 };
 var _require = require('../services/flattener'),
   FLATTEN_SEPARATOR = _require.FLATTEN_SEPARATOR;
-var getNestedFieldType = function getNestedFieldType(mongooseSchema, nestedFieldPath) {
+var _getNestedFieldType = function getNestedFieldType(mongooseSchema, nestedFieldPath) {
   var _mongooseSchema$tree, _mongooseSchema$type, _mongooseSchema$type2, _mongooseSchema$type3;
   if (!mongooseSchema || !nestedFieldPath) return undefined;
   var _nestedFieldPath$spli = nestedFieldPath.split(FLATTEN_SEPARATOR),
@@ -48,9 +48,9 @@ var getNestedFieldType = function getNestedFieldType(mongooseSchema, nestedField
   if (!deepNestedFieldPath.length) {
     return nestedFieldDeclaration.type || nestedFieldDeclaration;
   }
-  return getNestedFieldType(nestedFieldDeclaration, deepNestedFieldPath === null || deepNestedFieldPath === void 0 ? void 0 : deepNestedFieldPath.join(FLATTEN_SEPARATOR));
+  return _getNestedFieldType(nestedFieldDeclaration, deepNestedFieldPath === null || deepNestedFieldPath === void 0 ? void 0 : deepNestedFieldPath.join(FLATTEN_SEPARATOR));
 };
-exports.getNestedFieldType = getNestedFieldType;
+exports.getNestedFieldType = _getNestedFieldType;
 exports.getMongooseSchemaFromFieldPath = function (fieldPath, model) {
   return model.schema.paths[fieldPath] || model.schema.singleNestedPaths[fieldPath] || null;
 };
